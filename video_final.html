@@ -1,0 +1,268 @@
+<head>
+  <title>video_final</title>
+</head>
+
+<body>
+  <main>
+	{{> nav}}
+	{{#if currentUser}}
+		{{#if userProfile.count}}
+			{{#each userProfile}}
+		    	{{> profile}}
+		    {{/each}}
+		{{else}}
+			{{#if emptyViewHelper}}
+				<h2>Sorry, there are no users by this username...</h2>
+			{{else}}
+				{{> createProfile}}
+			{{/if}}
+		{{/if}}
+	{{else}}
+		{{> notLogged}}
+	{{/if}}
+  </main>
+</body>
+
+<template name="notLogged">
+  <h2>Please create an account above...</h2>
+</template>
+
+<template name="nav">
+	 <nav class="navbar navbar-default" style="background-color: #DBDBDB !important;">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" style="padding-top:7.5%;" href="/">
+              <img alt="Home" style="height:40px;width:40px;border-radius:25px;" src="http://assets.windowsphone.com/749c6074-a568-4424-b0be-7c2b8be9a60d/camera-icon-video-switch_InvariantCulture_Default.png">
+            </a>
+          </div>
+          <div>
+            <ul class="nav navbar-nav">
+                <li class="nav_btn"><a id="profileButton">Profile</a></li>
+                <li class="nav_btn"><a id="chatButton">Chat</a></li>
+                <li class="nav_btn"><a id="requests">Requests({{requestsTotal}})</a></li>
+            </ul>
+            <aside class="navbar-form navbar-right">
+            	{{> loginButtons}}
+            </aside>
+            <form class="navbar-form navbar-right" id="searchForm">
+				<div class="form-group">
+					<input name="searchInput" class="form-control" placeholder="Search by username...">
+				</div>
+            </form>
+          </div>
+        </div>
+      </nav>
+</template>
+
+<template name="profile">
+	<div class="profile">
+		<section class="appRow">
+			{{> userImage}}
+			{{> userHeadline}}
+			{{#if compareProfile}}
+				<aside class="userAction">
+					{{#if isFriend}}
+						<button id="requestChat" class="btn"><img src="http://www.graduationsource.com/skin/frontend/meigeetheme/v2/images/live-chat-icon.png"></button>
+						<button id="endFriend" class="btn"><img src="https://cdn0.iconfinder.com/data/icons/simple-icons-ii/69/10-20.png"></button>
+					{{else}}
+						<button id="requestAdd" class="btn"><img src="https://www.cool.navy.mil/usn/images/tabPlus.png"></button>
+					{{/if}}
+				</aside>
+			{{/if}}
+		</section>
+		<section class="appRow">
+			{{> userInfo}}
+			{{> userAbout}}
+		</section>
+		<section class="appRow">
+			{{> userSlideshow}}
+		</section>
+	</div>
+</template>
+
+<template name="contactsList">
+	<div class="profile">
+		<section class="appRow">
+			<h3>Contact List</h3>
+			{{> contactsOnline}}
+		</section>
+		<section class="appRow">
+			{{> contactsRandomize}}
+		</section>
+	</div>
+</template>
+
+<template name="createProfile">
+	<div class="profile">
+		<section class="appRow">
+			<h3>Start Your Profile</h3>
+		</section>
+		<section class="appRow">
+			<div id="startProfile">
+				<form class="new-profile">
+					<div class="form-group">
+						<label for="firstName">First Name</label>
+						<input type="text" name="firstName" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="lastName">Last Name</label>
+						<input type="text" name="lastName" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="text" name="email" class="form-control">
+					</div>
+					<button type="submit" class="btn btn-primary">Start Profile</button>
+				</form>
+			</div>
+		</section>
+	</div>
+</template>
+
+<template name="contactsOnline">
+	<section id="contactsOnline">
+		{{> contact}}
+	</section>
+</template>
+
+<template name="contact">
+	<div class="contactElement">
+		<button>TheRealJaneDoe <img src="http://www.windridgelanding.com/Images/GreenIconLight.png"></button>
+	</div>
+</template>
+
+<template name="contactsRandomize">
+	<section id="contactsRandomize">
+		<div id="randomize">
+			<button>Randomize</button>
+		</div>
+	</section>
+</template>
+
+<template name="userImage">
+	<aside id="userImage">
+		<img alt="Profile_Picture" style="height: 150px; width: 150px;cursor: pointer;" src="http://previews.123rf.com/images/kritchanut/kritchanut1401/kritchanut140100054/25251050-Businessman-avatar-profile-picture-Stock-Vector-icon.jpg">
+	</aside>
+</template>
+
+<template name="userHeadline">
+	<div id="userHeadline">
+		<h3>{{name}}</h3>
+		<p>Location: {{city}}</p>
+	</div>
+</template>
+
+<template name="userInfo">
+	<aside id="userInfo">
+		{{#if compareProfile}}
+		{{#if infoEditing}}
+			<form class="userInfoForm">
+				<div class="form-group">
+					<label for="firstName">First Name</label>
+					<input type="text" name="firstName" class="form-control" value="{{first}}">
+				</div>
+				<div class="form-group">
+					<label for="lastName">Last Name</label>
+					<input type="text" name="lastName" class="form-control" value="{{last}}">
+				</div>
+				<div class="form-group">
+					<label for="username">Username</label>
+					<input type="text" name="username" class="form-control" value="{{username}}">
+				</div>
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input type="text" name="email" class="form-control" value="{{email}}">
+				</div>
+				<div class="form-group">
+					<label for="city">City</label>
+					<input type="text" name="city" class="form-control" value="{{city}}">
+				</div>
+				<div class="editButton">
+					<button type="submit">Save</button>
+				</div>
+			</form>
+		{{else}}
+			<h4>Name</h4>
+			<p>{{name}}</p>
+			<h4>Username</h4>
+			<p>{{username}}</p>
+			<h4>Email</h4>
+			<p>{{email}}</p>
+			<h4>City</h4>
+			<p>{{city}}</p>
+			<div class="editButton" id="infoEdit">
+				<button>Edit</button>
+			</div>
+		{{/if}}
+		{{else}}
+			<h4>Name</h4>
+			<p>{{name}}</p>
+			<h4>Username</h4>
+			<p>{{username}}</p>
+			<h4>Email</h4>
+			<p>{{email}}</p>
+			<h4>City</h4>
+			<p>{{city}}</p>
+		{{/if}}
+	</aside>
+</template>
+
+<template name="userAbout">
+	<article id="userAbout">
+		{{#if compareProfile}}
+		{{#if aboutEditing}}
+			<form class="userAboutForm">
+				<div class="form-group">
+					<label for="about">About Me</label>
+					<textarea name="about" class="form-control" rows="8">{{about}}</textarea>
+				</div>
+				<div class="form-group">
+					<label for="work">Work</label>
+					<textarea name="work" class="form-control" rows="8">{{work}}</textarea>
+				</div>
+				<div class="form-group">
+					<label for="education">Education</label>
+					<textarea name="education" class="form-control" rows="8">{{education}}</textarea>
+				</div>
+				<div class="editButton">
+					<button>Save</button>
+				</div>
+			</form>
+		{{else}}
+			<article id="userPersonal">
+				<h4>About Me</h4>
+				<p>{{about}}</p>
+			</article>
+			<article id="userWork">
+				<h4>Work</h4>
+				<p>{{work}}</p>
+			</article>
+			<article id="userEducation">
+				<h4>Education</h4>
+				<p>{{education}}</p>
+			</article>
+			<div class="editButton" id="aboutEdit">
+				<button>Edit</button>
+			</div>
+		{{/if}}
+		{{else}}
+			<article id="userPersonal">
+				<h4>About Me</h4>
+				<p>{{about}}</p>
+			</article>
+			<article id="userWork">
+				<h4>Work</h4>
+				<p>{{work}}</p>
+			</article>
+			<article id="userEducation">
+				<h4>Education</h4>
+				<p>{{education}}</p>
+			</article>
+		{{/if}}
+	</article>
+</template>
+
+<template name="userSlideshow">
+	<section id="userSlideshow">
+	</section>
+</template>

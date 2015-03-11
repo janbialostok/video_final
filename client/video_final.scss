@@ -1,0 +1,176 @@
+@import '.meteor/local/build/programs/server/assets/packages/reywood_bootstrap3-sass/bootstrap';
+
+body {
+  font-family: sans-serif;
+  background-color: #315481;
+  background-image: linear-gradient(to bottom, #315481, #918e82 100%);
+  background-attachment: fixed;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  padding: 0;
+  margin: 0;
+
+  font-size: 14px;
+}
+
+main {
+	position: relative;
+	margin: auto;
+	width: 90%;
+	padding: 0%;
+}
+
+.profile {
+	float: left;
+	width: 96%;
+	margin: auto 2% auto 2%;
+	background-color: #DBDBDB;
+    background-image: linear-gradient(to bottom, #DBDBDB, #474747 100%);
+    border-radius: 5px;
+}
+
+.appRow {
+	float: left;
+	width: 100%;
+	display: block;
+	clear: both;
+	padding: 0%;
+	margin: 2.5% 1% 1% 1%;
+}
+
+#userImage {
+	float: left;
+	width: 28%;
+	display: inline;
+	text-align: center;
+}
+
+#userHeadline {
+	float: left;
+	width: 60%;
+	display: inline;
+	text-align: center;
+}
+
+.editButton {
+	button {
+		border-radius: 10px;
+	}
+	float: right;
+}
+
+#userInfo {
+	float: left;
+	width: 32%;
+	display: inline;
+	h4 {
+		margin-left: 2.5%;
+	}
+	p {
+		margin-left: 5%;
+	}
+}
+
+#userAbout {
+	float: left;
+	width: 65%;
+	display: inline;
+	h4 {
+		margin-left: 5%;
+	}
+	p {
+		margin-left: 7.5%;
+		margin-right: 7.5%;
+	}
+}
+
+#userSlideshow {
+	float: left;
+	width: 98%;
+	display: block;
+	height: 300px;
+	background-color: black;
+	border-radius: 5px;
+	opacity: 0.8;
+}
+
+#contactsOnline {
+	float: left;
+	width: 98%;
+	display: block;
+	height: 300px;
+	border-radius: 5px;
+	opacity: 0.8;
+	button {
+		border-radius: 10px;
+	}
+}
+
+#contactsRandomize {
+	float: left;
+	width: 98%;
+	display: block;
+	height: 300px;
+	background-color: black;
+	border-radius: 5px;
+	opacity: 0.8;
+	button {
+		width: 33%;
+		height: 75px;
+		border-radius: 10px;
+		margin: 20% auto auto 33%;
+	}
+}
+
+#startProfile {
+	float: left;
+	width: 98%;
+	display: block;
+	height: 300px;
+	opacity: 0.8;
+}
+
+.contactElement {
+	display: inline;
+	float: left;
+	margin: 1%;
+	width: 24.5%;
+}
+
+.nav_btn {
+	font-size: 90%;
+	margin: 4px auto 4px auto;
+    a {
+    	margin-right: 5%;
+    	color: #315481 !important;
+    	cursor: pointer;
+    }
+    a:hover {
+    	color: black !important;
+    	outline: 5px inset #315481;
+    	opacity: 0.7;
+    }
+}
+
+.userAction {
+	float:left;
+	display:inline;
+	width: 10%;
+	text-align:center;
+	button {
+		float: left;
+		width: 100%;
+		display: block;
+		clear: both;
+		padding: 15% auto 15% auto;
+	}
+	button:hover {
+		background-color: black !important;
+    	opacity: 0.7;
+	}
+}
